@@ -27,5 +27,11 @@ class suricata::config {
     path    => '/etc/suricata/suricata.yaml',
     content => template('suricata/suricata.yaml.erb'),
   }
+
+  # This might be RedHat specific
+  file{ 'suricata-sysconfig':
+    path    => '/etc/sysconfig/suricata',
+    content => template('suricata/suricata-sysconfig.erb'),
+  }
   
 }
