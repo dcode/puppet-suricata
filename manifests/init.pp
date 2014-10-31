@@ -13,8 +13,12 @@ class suricata (
   $monitor_interface = $suricata::params::monitor_interface,
 ) inherits suricata::params {
 
-  include apt
-
+  case $::osfamily {
+    'Debian': {
+      include apt
+    }
+  }
+ 
   # validate parameters here
   if $suricata::monitor_interface in $::interfaces {
     class { 'suricata::prepare': } ->
